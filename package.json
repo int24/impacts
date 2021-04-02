@@ -1,0 +1,33 @@
+{
+  "name": "impacts",
+  "version": "0.0.1",
+  "description": "Ultra-fast physics engine in JavaScript.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "make test",
+    "prepublishOnly": "make build && make bundle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octavetoast/impacts.git"
+  },
+  "author": "Braden Lamb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/octavetoast/impacts/issues"
+  },
+  "homepage": "https://github.com/octavetoast/impacts#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.22",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "source-map-support": "^0.5.19",
+    "typescript": "^4.1.5",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0"
+  }
+}

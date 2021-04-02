@@ -1,0 +1,8 @@
+.github
+.vscode
+coverage
+tests
+src
+
+Makefile
+tsconfig.json
