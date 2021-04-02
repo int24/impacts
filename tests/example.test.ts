@@ -1,3 +1,5 @@
+import { testFunction } from '../src'
+
 test('example test', () => {
-    'test'.toString()
+    expect(testFunction()).toBe('test')
 })
