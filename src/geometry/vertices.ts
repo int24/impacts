@@ -100,6 +100,20 @@ export class Vertices {
         return this
     }
 
+    public scale(scale: Vector, point?: Vector): this {
+        if (scale.x === 1 && scale.y === 1) return this
+
+        point = point || this.center()
+
+        for (const vertex of this.set) {
+            const delta = vertex.sub(point)
+            vertex.x = point.x + delta.x * scale.x
+            vertex.y = point.y + delta.x * scale.y
+        }
+
+        return this
+    }
+
     public contains(point: Vector): boolean {
         const set = this.set
 
