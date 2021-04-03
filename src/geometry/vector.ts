@@ -7,6 +7,13 @@ export class Vector {
         return this
     }
 
+    public translate(vector: Vector): this {
+        const sum = this.add(vector)
+        this.x = sum.x
+        this.y = sum.y
+        return this
+    }
+
     public clone(): Vector {
         return new Vector(this.x, this.y)
     }

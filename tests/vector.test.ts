@@ -8,6 +8,14 @@ test('set vector', () => {
     expect(vector1.y).toBe(vector2.y)
 })
 
+test('translate vector', () => {
+    const vector1 = new Vector(100, 100)
+    const vector2 = new Vector(50, 50)
+    vector1.translate(vector2)
+    expect(vector1.x).toBe(150)
+    expect(vector1.y).toBe(150)
+})
+
 test('clone vector', () => {
     const vector = new Vector(100, 100)
     const cloned = vector.clone()
