@@ -104,11 +104,11 @@ export class Vertices {
     public translate(translation: Vector, scalar?: number): this {
         if (scalar) {
             for (const vertex of this.set) {
-                vertex.add(translation.mult(scalar))
+                vertex.translate(translation.mult(scalar))
             }
         } else {
             for (const vertex of this.set) {
-                vertex.add(translation)
+                vertex.translate(translation)
             }
         }
 
