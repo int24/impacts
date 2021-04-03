@@ -1,6 +1,12 @@
 export class Vector {
     constructor(public x: number, public y: number) {}
 
+    public set(vector: Vector): this {
+        this.x = vector.x
+        this.y = vector.y
+        return this
+    }
+
     public clone(): Vector {
         return new Vector(this.x, this.y)
     }
@@ -65,7 +71,7 @@ export class Vector {
         return new Vector(this.x / scalar, this.y / scalar)
     }
 
-    public perp(negate?: boolean): Vector {
+    public perp(negate: boolean): Vector {
         const n = negate ? -1 : 1
         return new Vector(n * -this.y, n * this.x)
     }
