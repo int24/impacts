@@ -14,6 +14,13 @@ export class Vertices {
     }
 
     /**
+     * Clone this vertex set into another vertex set.
+     */
+    public clone(): Vertices {
+        return new Vertices(this.set)
+    }
+
+    /**
      * Get the center point or vector of this vertex set.
      */
     public center(): Vector {
