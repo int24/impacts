@@ -1,5 +1,13 @@
 import { Vector } from '../src'
 
+test('clone vector', () => {
+    const vector = new Vector(100, 100)
+    const cloned = vector.clone()
+    expect(vector === cloned).toBe(false)
+    expect(vector.x === cloned.x).toBe(true)
+    expect(vector.y === cloned.y).toBe(true)
+})
+
 test('rotate vector', () => {
     new Vector(100, 100).rotate(0.5)
 })
@@ -10,6 +18,7 @@ test('rotate vector about point', () => {
 
 test('normalize vector', () => {
     new Vector(100, 100).normalize()
+    new Vector(0, 0).normalize()
 })
 
 test('dot product of vectors', () => {
