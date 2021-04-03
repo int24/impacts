@@ -109,7 +109,7 @@ export class Vertices {
     }
 
     /**
-     * Rotate this vertex set in-place about an point or vector.
+     * Rotate this vertex set in-place about a point or vector.
      */
     public rotate(angle: number, point: Vector): this {
         if (angle === 0) return this
