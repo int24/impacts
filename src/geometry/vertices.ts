@@ -158,6 +158,33 @@ export class Vertices {
         return [...upper, ...lower]
     }
 
+    public isContext(): boolean | null {
+        const set = this.set
+        const length = set.length
+        let flags = 0
+        let j = 0
+        let k = 0
+        let z = 0
+
+        if (length < 3) return null
+
+        for (let i = 0; i < length; i++) {
+            j = (i + 1) % length
+            k = (i + 2) % length
+            z = (set[j].x - set[i].x) * (set[k].y - set[j].y)
+            z -= (set[j].y - set[i].y) * (set[k].x - set[j].x)
+
+            if (z < 0) flags |= 1
+            else if (z > 0) flags |= 2
+
+            if (flags === 3) return false
+        }
+
+        if (flags !== 0) return true
+
+        return null
+    }
+
     static fromPath(path: string): Vertices {
         const pattern = /L?\s*([-\d.e]+)[\s,]*([-\d.e]+)*/gi
         const points: Vector[] = []
