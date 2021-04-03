@@ -15,6 +15,13 @@ export class Axes {
     }
 
     /**
+     * Clone this axis set into another axis set.
+     */
+    public clone(): Axes {
+        return new Axes(this.set)
+    }
+
+    /**
      * Rotate this axis set in-place.
      */
     public rotate(angle: number): this {
