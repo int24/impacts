@@ -17,7 +17,7 @@ export class Vertices {
      * Clone this vertex set into another vertex set.
      */
     public clone(): Vertices {
-        return new Vertices(this.set)
+        return new Vertices(this.set.map(v => v.clone()))
     }
 
     /**
