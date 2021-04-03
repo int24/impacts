@@ -116,6 +116,16 @@ export class Vertices {
         return true
     }
 
+    public sortClockwise(): this {
+        const center = this.mean()
+
+        this.set.sort((a, b) => {
+            return center.angle(a) - center.angle(b)
+        })
+
+        return this
+    }
+
     public computeConvexHull(): Vector[] {
         // uses the Chain Hull algorithm
         // http://geomalgorithms.com/a10-_hull-1.html
