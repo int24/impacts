@@ -1,12 +1,21 @@
 import { Vector } from './vector'
 
+/**
+ * A set of vertices (or vectors) with utility methods to manipulate them.
+ */
 export class Vertices {
     public set: Vector[] = []
 
+    /**
+     * Create a vertex set from the provided points or vectors.
+     */
     constructor(points?: Vector[]) {
         if (points) this.set.push(...points)
     }
 
+    /**
+     * Get the center point or vector of this vertex set.
+     */
     public center(): Vector {
         const set = this.set
         const area = this.area(true)
@@ -25,6 +34,9 @@ export class Vertices {
         return center.div(6 * area)
     }
 
+    /**
+     * Get the average point or vector of this vertex set.
+     */
     public mean(): Vector {
         const length = this.set.length
         const mean = new Vector(0, 0)
@@ -36,6 +48,11 @@ export class Vertices {
         return mean.div(length)
     }
 
+    /**
+     * Get the area of this vertex set.
+     *
+     * @param signed - If `true`, will return the [signed area](https://proofwiki.org/wiki/Definition:Signed_Area).
+     */
     public area(signed?: boolean): number {
         let area = 0
         let set = this.set
@@ -51,6 +68,9 @@ export class Vertices {
         return Math.abs(area) / 2
     }
 
+    /**
+     * Get the moment of inertia of this vertex set.
+     */
     public inertia(mass: number): number {
         const set = this.set
         let numerator = 0
@@ -70,6 +90,10 @@ export class Vertices {
         return (mass / 6) * (numerator / denominator)
     }
 
+    /**
+     * Translates this vertex set in-place along a translation vector
+     * and optional scalar.
+     */
     public translate(translation: Vector, scalar?: number): this {
         if (scalar) {
             for (const vertex of this.set) {
@@ -84,6 +108,9 @@ export class Vertices {
         return this
     }
 
+    /**
+     * Rotate this vertex set in-place about an point or vector.
+     */
     public rotate(angle: number, point: Vector): this {
         if (angle === 0) return this
 
@@ -100,6 +127,9 @@ export class Vertices {
         return this
     }
 
+    /**
+     * Scale this vertex set in-place from a point (default is center).
+     */
     public scale(scale: Vector, point?: Vector): this {
         if (scale.x === 1 && scale.y === 1) return this
 
@@ -114,6 +144,9 @@ export class Vertices {
         return this
     }
 
+    /**
+     * Check if this vertex set contains a point or vector.
+     */
     public contains(point: Vector): boolean {
         const set = this.set
 
@@ -130,6 +163,9 @@ export class Vertices {
         return true
     }
 
+    /**
+     * Sort this vertex set in-place to clockwise order.
+     */
     public sortClockwise(): this {
         const center = this.mean()
 
@@ -140,6 +176,10 @@ export class Vertices {
         return this
     }
 
+    /**
+     * Uses the chain-hull algorithm to calculate the convext hull of
+     * this vertex as a set of vectors.
+     */
     public computeConvexHull(): Vector[] {
         // uses the Chain Hull algorithm
         // http://geomalgorithms.com/a10-_hull-1.html
@@ -182,7 +222,11 @@ export class Vertices {
         return [...upper, ...lower]
     }
 
-    public isContext(): boolean | null {
+    /**
+     * Check if this vertex set creates a convex polygon. Vertices must be
+     * in clockwise order, so make sure to use `Vertices.sortClockwise()` before this.
+     */
+    public isConvex(): boolean | null {
         // http://paulbourke.net/geometry/polygonmesh/
         // Copyright (c) Paul Bourke (use permitted)
 
@@ -212,6 +256,10 @@ export class Vertices {
         return null
     }
 
+    /**
+     * Create a vertex set from a path. Paths are strings of ordered x y
+     * pairs separated by spaces (ex: `100 30 40 50` or `L 100 30 L 40 50`)
+     */
     static fromPath(path: string): Vertices {
         const pattern = /L?\s*([-\d.e]+)[\s,]*([-\d.e]+)*/gi
         const points: Vector[] = []
