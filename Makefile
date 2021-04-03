@@ -1,3 +1,5 @@
+.PHONY: docs
+
 install:
 	npm ci
 
