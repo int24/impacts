@@ -116,6 +116,48 @@ export class Vertices {
         return true
     }
 
+    public computeConvexHull(): Vector[] {
+        // uses the Chain Hull algorithm
+        // http://geomalgorithms.com/a10-_hull-1.html
+
+        const upper: Vector[] = []
+        const lower: Vector[] = []
+        const vertices = this.set.slice()
+
+        vertices.sort((a, b) => {
+            const xDiff = a.x - b.x
+            const yDiff = a.y - b.y
+            return xDiff || yDiff
+        })
+
+        for (const vertex of vertices) {
+            while (
+                lower.length >= 2 &&
+                lower[lower.length - 2].cross3(lower[lower.length - 1], vertex)
+            ) {
+                lower.pop()
+            }
+
+            lower.push(vertex)
+        }
+
+        for (const vertex of vertices) {
+            while (
+                upper.length >= 2 &&
+                upper[upper.length - 2].cross3(upper[upper.length - 1], vertex)
+            ) {
+                upper.pop()
+            }
+
+            upper.push(vertex)
+        }
+
+        upper.pop()
+        lower.pop()
+
+        return [...upper, ...lower]
+    }
+
     static fromPath(path: string): Vertices {
         const pattern = /L?\s*([-\d.e]+)[\s,]*([-\d.e]+)*/gi
         const points: Vector[] = []
