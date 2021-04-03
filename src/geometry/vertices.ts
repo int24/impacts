@@ -183,6 +183,9 @@ export class Vertices {
     }
 
     public isContext(): boolean | null {
+        // http://paulbourke.net/geometry/polygonmesh/
+        // Copyright (c) Paul Bourke (use permitted)
+
         const set = this.set
         const length = set.length
         let flags = 0
