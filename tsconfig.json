@@ -11,5 +11,9 @@
   },
   "include": [
     "src/index.ts"
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
 }

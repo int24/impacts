@@ -7,6 +7,9 @@ test:
 test-coverage:
 	npx jest --coverage
 
+docs:
+	npx typedoc
+
 dev:
 	npx tsc -w -p tsconfig.json
 
