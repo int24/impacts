@@ -145,7 +145,7 @@ export class Vertices {
         for (const vertex of this.set) {
             const delta = vertex.sub(point)
             vertex.x = point.x + delta.x * scale.x
-            vertex.y = point.y + delta.x * scale.y
+            vertex.y = point.y + delta.y * scale.y
         }
 
         return this
