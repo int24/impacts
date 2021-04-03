@@ -65,7 +65,7 @@ export class Vector {
         return new Vector(this.x / scalar, this.y / scalar)
     }
 
-    public perp(negate: boolean = false): Vector {
+    public perp(negate?: boolean): Vector {
         const n = negate ? -1 : 1
         return new Vector(n * -this.y, n * this.x)
     }
